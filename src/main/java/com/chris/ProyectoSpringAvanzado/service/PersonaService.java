@@ -15,10 +15,13 @@ public interface PersonaService {
 
     Persona updatePersona(Long idPersona, Persona persona);
 
+    //con stream
     List <PersonaDTO> listaPersonas();
 
     void deletePersona(Long idPersona);
 
-    PersonaDTO listarPersonaDTOs(Persona persona);
+
+    //manualmente
+   PersonaDTO listarPersonaDTOs(Long idPersona);
 
 }

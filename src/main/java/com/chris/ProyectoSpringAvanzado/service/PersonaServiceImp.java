@@ -66,6 +66,7 @@ public class PersonaServiceImp implements PersonaService {
 
     }
 
+    // solo muestra los datos del dto como id, nombre, estado
     @Override
     public List<PersonaDTO> listaPersonas() {
 
@@ -80,8 +81,13 @@ public class PersonaServiceImp implements PersonaService {
 
     }
 
+    // sin stream convertir manualmente
+
     @Override
-    public PersonaDTO listarPersonaDTOs(Persona persona) {
+    public PersonaDTO listarPersonaDTOs(Long idPersona) {
+
+        Persona persona = personaRepository.findById(idPersona)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Persona no encontrada con el id : " + idPersona));
 
         PersonaDTO dto = new PersonaDTO();
 

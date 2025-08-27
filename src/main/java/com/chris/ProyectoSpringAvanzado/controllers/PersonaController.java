@@ -46,7 +46,8 @@ public class PersonaController {
     }
 
     @PutMapping("/editar/{idPersona}")
-    public ResponseEntity<Persona> actualizarPersona(@PathVariable Long idPersona, @RequestBody @Valid Persona persona) {
+    public ResponseEntity<Persona> actualizarPersona(@PathVariable Long idPersona,
+            @RequestBody @Valid Persona persona) {
 
         Persona personaAct = personaService.updatePersona(idPersona, persona);
         return ResponseEntity.ok(personaAct);
@@ -66,10 +67,19 @@ public class PersonaController {
         return ResponseEntity.ok(persona);
     }
 
+    // listar persona dto
     @GetMapping("/listar")
-    public ResponseEntity <List<PersonaDTO>> listarPersonas(){
-        List <PersonaDTO> personaListar = personaService.listaPersonas();
+    public ResponseEntity<List<PersonaDTO>> listarPersonas() {
+        List<PersonaDTO> personaListar = personaService.listaPersonas();
         return ResponseEntity.ok(personaListar);
+    }
+
+    @GetMapping("/listar/{idPersona}")
+    public ResponseEntity<PersonaDTO> getListarPersonasDTOP(@PathVariable Long idPersona) {
+
+        PersonaDTO persona = personaService.listarPersonaDTOs(idPersona);
+        return ResponseEntity.ok(persona);
+
     }
 
 }

@@ -1,9 +1,11 @@
 package com.chris.ProyectoSpringAvanzado.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.chris.ProyectoSpringAvanzado.dto.EstadoDTO;
 import com.chris.ProyectoSpringAvanzado.exception.RecursoNoEncontradoException;
 import com.chris.ProyectoSpringAvanzado.model.Estado;
 import com.chris.ProyectoSpringAvanzado.repository.EstadoRepository;
@@ -61,6 +63,31 @@ public class EstadoServiceImp implements EstadoService {
                 .orElseThrow(() -> new RecursoNoEncontradoException("Estado no encontrado"));
 
         estadoRepository.delete(estado);
+
+    }
+
+    @Override
+    public EstadoDTO listarEstados(Long idEstado) {
+
+        Estado estado = estadoRepository.findById(idEstado)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Estado con el id no encontrado " + idEstado));
+
+        EstadoDTO estadoDTO = new EstadoDTO();
+
+        estadoDTO.setNombre(estado.getNombre());
+        return estadoDTO;
+
+    }
+
+    @Override
+    public List<EstadoDTO> listarEstadoDTOs() {
+
+        List<Estado> estados = estadoRepository.findAll();
+
+        return estados.stream()
+                .map(t -> new EstadoDTO(
+                        t.getNombre()))
+                .collect(Collectors.toList());
 
     }
 
