@@ -74,14 +74,19 @@ public class EstadoController {
 
     }
 
-
     @GetMapping("/mostrar/{idEstado}")
-    public ResponseEntity <Estado> getIdEstado(@PathVariable Long idEstado){
+    public ResponseEntity<Estado> getIdEstado(@PathVariable Long idEstado) {
         Estado estado = estadoService.getIdEstado(idEstado);
         return ResponseEntity.ok().body(estado);
 
+    }
 
+    @GetMapping("/listarMapper")
+    public ResponseEntity<List<EstadoDTO>> getListMapper() {
 
+        List<EstadoDTO> listaMapper = estadoService.listarEstadosMapper();
+
+        return ResponseEntity.ok().body(listaMapper);
     }
 
 }

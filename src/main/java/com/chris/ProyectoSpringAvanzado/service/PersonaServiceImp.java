@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chris.ProyectoSpringAvanzado.dto.PersonaDTO;
 import com.chris.ProyectoSpringAvanzado.exception.RecursoNoEncontradoException;
+import com.chris.ProyectoSpringAvanzado.mapper.PersonaMapper;
 import com.chris.ProyectoSpringAvanzado.model.Persona;
 import com.chris.ProyectoSpringAvanzado.repository.PersonaRepository;
 
@@ -14,9 +15,11 @@ import com.chris.ProyectoSpringAvanzado.repository.PersonaRepository;
 public class PersonaServiceImp implements PersonaService {
 
     private final PersonaRepository personaRepository;
+    private final PersonaMapper personaMapper;
 
-    public PersonaServiceImp(PersonaRepository personaRepository) {
+    public PersonaServiceImp(PersonaRepository personaRepository, PersonaMapper personaMapper) {
         this.personaRepository = personaRepository;
+        this.personaMapper = personaMapper;
 
     }
 
@@ -97,6 +100,14 @@ public class PersonaServiceImp implements PersonaService {
 
         return dto;
 
+    }
+
+    @Override
+    public List<PersonaDTO> listarPersonasMapper() {
+        List<Persona> listaMapper = personaRepository.findAll();
+        return listaMapper.stream()
+                .map(personaMapper::toDto)
+                .collect(Collectors.toList());
     }
 
 }

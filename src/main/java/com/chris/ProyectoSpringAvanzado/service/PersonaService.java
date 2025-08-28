@@ -24,4 +24,5 @@ public interface PersonaService {
     //manualmente
    PersonaDTO listarPersonaDTOs(Long idPersona);
 
+   List <PersonaDTO> listarPersonasMapper();
 }

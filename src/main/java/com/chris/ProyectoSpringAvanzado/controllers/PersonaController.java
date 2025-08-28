@@ -82,4 +82,12 @@ public class PersonaController {
 
     }
 
+    @GetMapping("/listarMapper")
+    public ResponseEntity<List<PersonaDTO>> getListMapper(){
+
+        List <PersonaDTO> listaMapper = personaService.listarPersonasMapper();
+        return ResponseEntity.ok().body(listaMapper);
+
+    }
+
 }

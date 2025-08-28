@@ -24,6 +24,8 @@ public interface EstadoService {
 
     List<EstadoDTO> listarEstadoDTOs();
 
+
+    List<EstadoDTO> listarEstadosMapper();
     
 
 }

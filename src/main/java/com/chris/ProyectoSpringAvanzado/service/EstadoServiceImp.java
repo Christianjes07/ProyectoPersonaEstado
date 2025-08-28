@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chris.ProyectoSpringAvanzado.dto.EstadoDTO;
 import com.chris.ProyectoSpringAvanzado.exception.RecursoNoEncontradoException;
+import com.chris.ProyectoSpringAvanzado.mapper.EstadoMapper;
 import com.chris.ProyectoSpringAvanzado.model.Estado;
 import com.chris.ProyectoSpringAvanzado.repository.EstadoRepository;
 
@@ -15,8 +16,11 @@ public class EstadoServiceImp implements EstadoService {
 
     private final EstadoRepository estadoRepository;
 
-    public EstadoServiceImp(EstadoRepository estadoRepository) {
+    private final EstadoMapper estadoMapper;
+
+    public EstadoServiceImp(EstadoRepository estadoRepository, EstadoMapper estadoMapper) {
         this.estadoRepository = estadoRepository;
+        this.estadoMapper = estadoMapper;
 
     }
 
@@ -87,6 +91,17 @@ public class EstadoServiceImp implements EstadoService {
         return estados.stream()
                 .map(t -> new EstadoDTO(
                         t.getNombre()))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<EstadoDTO> listarEstadosMapper() {
+
+        List<Estado> listaMapper = estadoRepository.findAll();
+
+        return listaMapper.stream()
+                .map(estadoMapper::toDTO)
                 .collect(Collectors.toList());
 
     }
