@@ -25,4 +25,13 @@ public interface PersonaService {
    PersonaDTO listarPersonaDTOs(Long idPersona);
 
    List <PersonaDTO> listarPersonasMapper();
+
+
+   //CONSULTAS PERSONALIZADAS
+
+   List<Persona> listarPersonasPorEstado();
+
+   List <Persona> listarPersonaConEstado();
+
+   Long contarPersonas();
 }

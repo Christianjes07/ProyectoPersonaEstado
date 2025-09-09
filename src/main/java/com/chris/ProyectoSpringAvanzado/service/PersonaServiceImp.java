@@ -110,4 +110,25 @@ public class PersonaServiceImp implements PersonaService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Persona> listarPersonasPorEstado() {
+
+        List<Persona> listarPersonasEstado = personaRepository.mostrarPersonasConId();
+        return listarPersonasEstado;
+
+    }
+
+    @Override
+    public List<Persona> listarPersonaConEstado() {
+        return personaRepository.mostrarPersonasEstado();
+        
+    }
+
+    @Override
+    public Long contarPersonas() {
+
+        return personaRepository.contarPersonas();
+    
+    }
+
 }

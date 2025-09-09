@@ -83,11 +83,37 @@ public class PersonaController {
     }
 
     @GetMapping("/listarMapper")
-    public ResponseEntity<List<PersonaDTO>> getListMapper(){
+    public ResponseEntity<List<PersonaDTO>> getListMapper() {
 
-        List <PersonaDTO> listaMapper = personaService.listarPersonasMapper();
+        List<PersonaDTO> listaMapper = personaService.listarPersonasMapper();
         return ResponseEntity.ok().body(listaMapper);
 
+    }
+
+    @GetMapping("/hola")
+    public String getHola() {
+        return "Que onda perros";
+
+    }
+
+    @GetMapping("PersonasEstado")
+    public ResponseEntity<List<Persona>> listarPersonasEstado() {
+        List<Persona> lista = personaService.listarPersonasPorEstado();
+        return ResponseEntity.ok().body(lista);
+
+    }
+
+    @GetMapping("relaciones")
+    public ResponseEntity<List<Persona>> listarPersonasConEstado() {
+        List<Persona> lista = personaService.listarPersonaConEstado();
+        return ResponseEntity.ok().body(lista);
+
+    }
+
+    @GetMapping("Numerodepersonas")
+    public ResponseEntity<Long> contarPersonas(){
+        Long contar = personaService.contarPersonas();
+        return ResponseEntity.ok().body(contar);
     }
 
 }
