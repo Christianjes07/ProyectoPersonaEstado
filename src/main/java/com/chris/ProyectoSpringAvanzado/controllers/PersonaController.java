@@ -116,4 +116,11 @@ public class PersonaController {
         return ResponseEntity.ok().body(contar);
     }
 
+    @GetMapping("/listarid/{idPersona}")
+    public ResponseEntity<Persona> obtenerPersonasById(@PathVariable Long idPersona){
+
+        Persona persona = personaService.getIdPersona(idPersona);
+        return ResponseEntity.ok().body(persona);
+    }
+
 }

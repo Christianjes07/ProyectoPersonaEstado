@@ -33,4 +33,5 @@ public class Persona {
     @JoinColumn(name = "id_estado", nullable = false)
     private Estado estado;
 
+
 }

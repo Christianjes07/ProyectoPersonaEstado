@@ -34,4 +34,8 @@ public interface PersonaService {
    List <Persona> listarPersonaConEstado();
 
    Long contarPersonas();
+
+
+   //pruebas unitarias
+   List<Persona> listsUnitaria();
 }

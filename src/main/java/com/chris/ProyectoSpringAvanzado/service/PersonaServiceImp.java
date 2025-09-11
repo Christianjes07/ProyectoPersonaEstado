@@ -1,5 +1,6 @@
 package com.chris.ProyectoSpringAvanzado.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,6 +130,22 @@ public class PersonaServiceImp implements PersonaService {
 
         return personaRepository.contarPersonas();
     
+    }
+
+    //para pruebas unitarias
+
+    @Override
+    public List<Persona> listsUnitaria() {
+
+        Persona p1 = new Persona();
+
+        p1.setNombre("Christian");
+
+        List<Persona> lista = Arrays.asList(p1);
+        return lista;
+
+        
+        
     }
 
 }
